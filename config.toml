@@ -1,0 +1,45 @@
+baseurl = "http://www.blevesearch.com/"
+languageCode = "en-us"
+title = "Bleve"
+theme = "bleve"
+copyright= "© <a href=\"http://couchbase.com/\">Couchbase</a> 2015"
+
+[params]
+  email = "info@blevesearch.com"
+  Ganalytics = "UA-54278444-1"
+
+[[params.social]]
+    title = "twitter"
+    url = "https://twitter.com/blevesearch"
+[[params.social]]
+    title = "github"
+    url = "https://github.com/blevesearch"
+
+[[menu.main]]
+    name = "News"
+    weight = 50
+    url = "/news/"
+
+[[menu.main]]
+    name = "Code"
+    weight = 100
+    url = "https://github.com/blevesearch/bleve"
+
+[[menu.docs]]
+    name = "User Guide"
+    weight = 10
+    identifier = "userguide"
+
+
+
+[[menu.docs]]
+    name = "How do I ...?"
+    weight = 25
+    identifier = "howto"
+    parent = "userguide"
+
+
+[[menu.docs]]
+    name = "Developer Guide"
+    weight = 20
+    identifier = "devguide"

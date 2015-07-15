@@ -1,0 +1,50 @@
+      <hr>
+      <!-- Footer -->
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:{{ .Site.Params.email }}">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      {{ range .Site.Params.social }}
+                      <li>
+                        <a href="{{ .url }}">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-{{ .title }} fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      {{ end }}
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">{{ .Site.Copyright  | safeHTML }}</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{{ .Site.BaseURL }}/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ .Site.BaseURL }}/js/bootstrap.min.js"></script>
+
+    <script src="{{ .Site.BaseURL }}/js/prism.js"></script>
+
+    <script src="/js/handlebars.js"></script>
+    <script src="/js/search.js"></script>
+
+    {{ if isset .Site.Params "Ganalytics" }}{{ partial "ga.html" . }}{{ end }}
+
+</body>
+
+</html>

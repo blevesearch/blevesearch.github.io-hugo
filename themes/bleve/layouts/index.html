@@ -1,0 +1,116 @@
+{{ partial "header.html" .}}
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <pre><code class="language-go">import "github.com/blevesearch/bleve"
+
+func main() {
+    // open a new index
+    mapping := bleve.NewIndexMapping()
+    index, err := bleve.New("example.bleve", mapping)
+
+    // index some data
+    err = index.Index(identifier, your_data)
+
+    // search for some text
+    query := bleve.NewMatchQuery("text")
+    search := bleve.NewSearchRequest(query)
+    searchResults, err := index.Search(search)
+}</code></pre>
+        </div>
+
+        <div class="col-lg-6">
+          <h1>Bleve<h1>
+          <h3>full-text search and indexing for Go</h3>
+          <ul>
+            <li>Simple top-level API</li>
+            <li>Index any object in your data model</li>
+            <li>Override default mapping to customize behavior</li>
+            <li>Rich set of interfaces for extending the capabilities</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-6">
+          <h3>Upcoming Events <small>(<a href="/events/">See All</a>)</small></h3>
+          <ul>
+            {{ range (where .Data.Pages "Section" "events") }}
+              {{ if ge .Date.Unix .Now.Unix }}
+                <li class="on-the-road">
+                  <a href="{{ .Permalink }}">
+                    <img src="/img/events/{{ .Params.icon }}"/>
+                  </a>
+                </li>
+              {{end}}
+            {{end}}
+          </ul>
+        </div>
+
+        <!--
+        <div class="col-lg-6">
+          <h3>bleve on the road</h3>
+          <ul>
+            <li class="on-the-road"><a href="https://fosdem.org/2015/schedule/track/go/" target="_blank" title="FOSDEM 2015 Go devroom"><img width="125" src="img/fosdem-2015.jpg" alt="FOSDEM 2015 Go devroom" /></a></li>
+            <li class="on-the-road"><a href="http://www.gophercon.in/" target="_blank" title="GOPHERCON INDIA 2015, The First-Ever Go Conference in India @Banglore"><img src="img/gophercon-india-speaking-125px.png" alt="GOPHERCON INDIA 2015, The First-Ever Go Conference in India @Banglore" /></a></li>
+          </ul>
+        </div>
+        -->
+      </div>
+
+      <hr/>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Simple</h4>
+          <p>Import one package, build an index with three lines of code, query for documents with another three lines.</p>
+
+          <h4>Text Analysis</h4>
+          <p>Bleve includes general-purpose analyzers as well as pre-built text analyzers for the following languages:</p>
+            <ul>
+              <li>Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Persian, Portuguese, Romanian, Russian, Sorani, Spanish, Swedish, Thai, Turkish</li>
+            </ul>
+
+          <h4>Faceting</h4>
+          <p>Support for aggregating facet information across search results.  Supported facet types:</p>
+          <ul>
+            <li>Terms Facet</li>
+            <li>Numeric Range Facet</li>
+            <li>Date Range Facet</li>
+          </ul>
+
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Powerful</h4>
+          <p>By indexing your data with bleve you gain the ability to compose the following query types:</p>
+          <ul>
+            <li>Term, Phrase, Match, Match Phrase, Prefix</li>
+            <li>Conjunction, Disjunction, Boolean</li>
+            <li>Numeric and Date Ranges</li>
+            <li>Query String (see <a href="https://github.com/blevesearch/bleve/wiki/Query-String-Query">Syntax</a>)
+          </ul>
+
+          <h4>Scoring</h4>
+          <p>Industry standard <a href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf</a> scoring with query time boosting.</p>
+
+          <h4>Result Highlighting</h4>
+          <p>Includes support for <span class="highlight">highlighting matching text</span> within document fragments.</p>
+
+          <h4>Open Source</h4>
+          <p>The <a href="http://github.com/blevesearch/bleve">bleve source</a> is available on github and distributed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="row marketing">
+        <div class="col-lg-12">
+          <h3>Latest News</h3>
+          <ul>
+            {{ range first 5 (where .Data.Pages "Section" "news") }}
+               <li><a href="{{ .Permalink }}">{{ .Title }} - {{ .Date.Format "2006-01-02" }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+
+{{ partial "footer.html" .}}

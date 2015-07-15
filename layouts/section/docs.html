@@ -1,0 +1,10 @@
+{{ partial "header.html" .}}
+
+<h1>Documentation</h1>
+
+{{ range .Data.Pages.ByWeight }}
+<h3><a href="{{ .Permalink }}">{{ .Title }}</a> <small>{{ .Date.Format "Mon, Jan 2, 2006" }}</small></h3>
+{{ end }}
+
+
+{{ partial "footer.html" .}}

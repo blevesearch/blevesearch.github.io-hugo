@@ -1,0 +1,43 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  height: 50px;
+}
+
+
+.logo {
+  float: left;
+  margin-top: -7px;
+  margin-right: 10px;
+}
+
+.on-the-road {
+  list-style-type: none;
+  display: inline;
+}
+
+.events-list {
+  list-style-type: none;
+}
+
+footer .copyright {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.docmenu {
+  padding-left: 20px;
+}
+
+.docmain {
+  padding-left: 40px;
+}
+
+.icon {
+  height: 16px;
+  width: 16px;
+}

@@ -1,0 +1,53 @@
+		<h3>Documentation</h3>
+		<ul class="docmenu">
+				{{ $currentNode := . }}
+				{{ range .Site.Menus.docs }}
+					{{ if .HasChildren }}
+					<li>
+						{{if $currentNode.IsMenuCurrent "docs" . }}
+							{{ .Name }}
+						{{else  if .URL }}
+							<a href="{{.URL}}">{{.Name}}</a>
+						{{else}}
+							{{ .Name }}
+						{{end}}
+						<ul  class="docmenu">
+							{{ range .Children }}
+								{{ if .HasChildren }}
+									<li>
+										{{if $currentNode.IsMenuCurrent "docs" . }}
+											{{ .Name }}
+										{{ else if .URL }}
+											<a href="{{.URL}}">{{.Name}}</a>
+										{{else}}
+											{{ .Name }}
+										{{end}}
+										<ul  class="docmenu">
+											{{ range .Children }}
+												{{if $currentNode.IsMenuCurrent "docs" . }}
+													<li class="active">{{ .Name }}</li>
+												{{else}}
+													<li><a href="{{.URL}}">{{ .Name }}</a></li>
+												{{end}}
+											{{end}}
+										</ul>
+									</li>
+								{{else}}
+                					{{if $currentNode.IsMenuCurrent "docs" . }}
+										<li class="active">{{ .Name }}</li>
+									{{else}}
+										<li><a href="{{.URL}}">{{ .Name }}</a></li>
+									{{end}}
+		                    	{{end}}
+		                    {{ end }}
+						</ul>
+					</li>
+					{{else}}
+    					{{if $currentNode.IsMenuCurrent "docs" . }}
+							<li class="active">{{ .Name }}</li>
+						{{else}}
+							<li><a href="{{.URL}}">{{ .Name }}</a></li>
+						{{end}}
+					{{end}}
+				{{end}}
+		</ul>
