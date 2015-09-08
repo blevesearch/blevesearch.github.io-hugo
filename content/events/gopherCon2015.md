@@ -8,4 +8,6 @@ icon = "gc2015.png"
 The GopherCon lightning talk was a success!  It was great to meet so many Bleve users at GopherCon.
 
 - [Slides](https://github.com/blevesearch/gophercon15/blob/master/bleve-gophercon15.pdf)
-- Video: Coming Soon
+- Video:
+
+{{< youtube 9nSA5L8lO0A >}}
