@@ -10,6 +10,12 @@ parent = 'userguide'
 
 The following applications use bleve.  Add yours to the list!
 
+## Caddy
+
+Caddy is an alternative web server that is easy to configure and use.  Caddy uses Bleve to automatically index your site and expose a search page and JSON endpoint.
+
+* https://caddyserver.com/docs/search
+
 ## cbft
 Full-text searches of Couchbase Server, powered by bleve.
 
