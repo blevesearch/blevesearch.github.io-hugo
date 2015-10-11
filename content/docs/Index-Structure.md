@@ -12,7 +12,7 @@ Bleve default index, called "upside_down" is stored in a single key/value store
 table. The store must be able to enumerate its entries starting at a given key,
 in lexicographic byte order.
 
-Index key and values are handled as byte arrays and are called rows (see `index/upside_down/row.go` for details). To store different row types in a single table, bleve prefixes their keys with a single byte, for instance the term frequency keys start with a 'f'. The following sections describe the data structures stored in the index with pseudo-Go code for value layout.
+Index key and values are handled as byte arrays and are called rows (see `index/upside_down/row.go` for details). To store different row types in a single table, bleve prefixes their keys with a single byte, for instance the term frequency keys start with a 't'. The following sections describe the data structures stored in the index with pseudo-Go code for value layout.
 
 ### Version Row
 
@@ -53,7 +53,7 @@ struct {
 }
 ```
 
-Dictionary rows index (field, term) pairs and maintain their number of occurrences. Range queries over terms of a given field, which includes prefix queries, are implemented by seeking over dictionary rows first.
+Dictionary rows index (field, term) pairs and count the number of documents containing them. Range queries over terms of a given field, which includes prefix queries, are implemented by seeking over dictionary rows first.
 
 
 ### Term Frequency Rows
@@ -75,12 +75,11 @@ type TermFrequencyRow struct {
 }
 ```
 
-Term frequency rows store statistics about a term in a document field. Term occurrences can be recorded as well.
+Term frequency rows store statistics about a term in a document field. Applications using result highlighting or phrase search must also record term locations by setting `IncludeTermVectors` in the field mapping. Term locations are used to retrieve the term origin in the source document or measure terms proximity.
 
-`Freq` is the number of occurrences of the term in this field.
-`Norm` is 1/sqrt(number of tokens in this field).
-`Vectors` is filled only if `IncludeTermVectors` was set in the field mapping. Each element describes a single occurrence of the term in the source document. `Field` is the field index, and is the same as in the row key. Because documents are structured as trees and intermediate elements can be arrays or slices, the field index is sometimes not enough to resolve a value. The indices of the value or some of its ancestors into those arrays or slices are also required. They are stored in `ArrayPositions`. `Pos` tells the entry is the `Pos`-th occurrence of the term in the field (starting at 1). `Start` and `End` are the byte offsets of the source of the term in the field value.
-
+* `Freq` is the number of occurrences of the term in the field.
+* `Norm` is 1/sqrt(number of tokens in the field). This factor helps balancing scores of shorter documents which have lower term frequencies.
+* `Vectors` is filled if `IncludeTermVectors` is set in the field mapping. Each element describes a single occurrence of the term in the source document. `Field` is the field index, and is the same as in the row key except for composite fields where it references the source field (composite fields like `_all` are made of the union of other fields). Because documents are structured as trees and intermediate elements can be arrays or slices, the field index is sometimes not enough to resolve a value. The indices of the value or some of its ancestors into those arrays or slices are also required. They are stored in `ArrayPositions`. `Pos` tells the entry is the `Pos`-th occurrence of the term in the field (starting at 1). `Start` and `End` are the byte offsets of the source of the term in the field value.
 
 ### Back Index Rows
 
