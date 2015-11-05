@@ -8,7 +8,28 @@ parent = 'analysis'
 
 +++
 
+Analyzers reference Token Filters by name. Use existing ones or create variants with `IndexMapping.AddCustomTokenFilter`:
+```
+var m *IndexMapping = index.Mapping()
+err := m.AddCustomTokenFilter("color_stop_filter", map[string]interface{}{
+    "type": stop_tokens_filter.Name,
+    "tokens": []interface{
+        "red",
+        "green",
+        "blue",
+    },
+})
+if err != nil {
+    log.Fatal(err)
+}
+```
+creates a new Stop Token Filter named "color_stop_filter", which removes all "red", "green" or "blue" tokens. Once registered, this filter can be referenced by a custom Analyzer.
+
 ### Apostrophe
+
+Configuration:
+
+* `type`: `apostrophe_filter.Name`
 
 The Apostrophe Token Filter removes all characters after an apostrophe.
 
@@ -72,6 +93,11 @@ The supported languages are:
 * Turkish
 
 ### Stop Token
+
+Configuration:
+
+* `type`: `stop_tokens_filter.Name`
+* `stop_token_map` (string): the name of the token map identifying tokens to remove.
 
 The Stop Token Filter is configured with a map of tokens that should be removed from the token stream.
 
