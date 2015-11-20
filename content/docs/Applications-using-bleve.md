@@ -35,3 +35,8 @@ A full text search indexer for your files on disk.
 Locally index and search database dumps from https://openbay.isohunt.to
 
 * https://github.com/peterhellberg/tpb-search
+
+## Ekanite
+A Syslog server with built-in search for received log messages.
+
+* https://github.com/ekanite/ekanite
