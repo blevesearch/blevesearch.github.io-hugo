@@ -30,20 +30,20 @@ func main() {
           </ul>
         </div>
 
-        <div class="col-lg-6">
+        <!--<div class="col-lg-6">
           <h3>Upcoming Events <small>(<a href="/events/">See All</a>)</small></h3>
           <ul>
-            {{ range (where .Data.Pages "Section" "events") }}
-              {{ if ge .Date.Unix .Now.Unix }}
+            {{/* range (where .Data.Pages "Section" "events") }}
+              {{if ge .Date.Unix .Now.Unix }}
                 <li class="on-the-road">
-                  <a href="{{ .Permalink }}">
-                    <img src="/img/events/{{ .Params.icon }}"/>
+                  <a href="{{.Permalink }}">
+                    <img src="/img/events/{{.Params.icon }}"/>
                   </a>
                 </li>
               {{end}}
-            {{end}}
+            {{end*/}}
           </ul>
-        </div>
+        </div>-->
 
         <!--
         <div class="col-lg-6">

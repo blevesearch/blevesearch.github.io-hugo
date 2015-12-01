@@ -12,3 +12,5 @@ icon = "gophercon-india-speaking-125px.png"
 - Video:
 
 {{< youtube uEhs_xrWJNw >}}
+
+<script async class="speakerdeck-embed" data-id="5deddf2a4c67446e9d8526cc19fe6e13" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>

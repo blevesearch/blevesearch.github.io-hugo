@@ -21,6 +21,11 @@ copyright= "© <a href=\"http://couchbase.com/\">Couchbase</a> 2015"
     url = "/news/"
 
 [[menu.main]]
+    name = "Events"
+    weight = 75
+    url = "/events/"
+
+[[menu.main]]
     name = "Code"
     weight = 100
     url = "https://github.com/blevesearch/bleve"
