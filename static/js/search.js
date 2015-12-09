@@ -287,7 +287,10 @@ function addFilter(filtercat, value) {
 
 function getURIParameter(param, asArray) {
     return document.location.search.substring(1).split('&').reduce(function(p,c) {
-        var parts = c.split('=', 2).map(function(param) { return decodeURIComponent(param).replace(/\+/g, " "); });
+        var parts = c.split('=', 2).map(function(param) { 
+			param = param.replace(/%2B/g, "BLEVEPLUS_PLACEHOLDER");
+			return decodeURIComponent(param).replace(/\+/g, " ").replace(/BLEVEPLUS_PLACEHOLDER/g, "+"); 
+		});
         if(parts.length === 0 || parts[0] != param) return (p instanceof Array) && !asArray ? null : p;
         return asArray ? p.concat(parts.concat(true)[1]) : parts.concat(true)[1];
     }, []);
