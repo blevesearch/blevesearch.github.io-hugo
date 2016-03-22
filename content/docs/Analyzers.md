@@ -18,7 +18,7 @@ The Keyword Analyzer does not perform any analysis on the input text.  It create
 
 The simple analyzer performs only minimal analysis on the input.
 
-* Tokenizer - [Whitespace]({{< relref "docs/Tokenizers.md#whitespace" >}})
+* Tokenizer - [Unicode]({{< relref "docs/Tokenizers.md#unicode" >}})
 * Token Filters
   * [Lowercase]({{< relref "docs/Token-Filters.md#lowercase" >}})
 
@@ -27,7 +27,7 @@ The simple analyzer performs only minimal analysis on the input.
 
 The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.
 
-* Tokenizer - [Whitespace]({{< relref "docs/Tokenizers.md#whitespace" >}})
+* Tokenizer - [Unicode]({{< relref "docs/Tokenizers.md#unicode" >}})
 * Token Filters
   * [Lowercase]({{< relref "docs/Token-Filters.md#lowercase" >}})
   * English [Stop Token]({{< relref "docs/Token-Filters.md#stop-token" >}})
