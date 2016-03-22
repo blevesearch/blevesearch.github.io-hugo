@@ -18,7 +18,10 @@ The Regular Expression Tokenizer will tokenize input using a configurable regula
 
 ### Whitespace
 
-The Whitespace Tokenizer is an instance of the Regular Expression Tokenizer.  It uses the regular expression `\w+`.  For many western languages this may work well as a simple tokenizer.
+The Whitespace Tokenizer is an instance of the Regular Expression Tokenizer.  It matches tokens using the regular expression:
+
+    \p{Han}|\p{Hangul}|\p{Hiragana}|\p{Katakana}|[^\p{Z}\p{P}\p{C}\p{Han}\p{Hangul}\p{Hiragana}\p{Katakana}]+
+
 
 ### Unicode
 
