@@ -43,9 +43,12 @@ The Detect Language Analyzer is used to examine input text, use heuristics to de
 
 ## Language Specific Analyzers
 
+There are a number of language specific analyzers available. Some of these analyzers are of experimental nature and can be found in the [blevex repository](https://github.com/blevesearch/blevex/). To learn more about the experimental code in the blevex repository and how to use it go [here]({{< relref "docs/Blevex.md" >}}).
+
 * Danish
 * Dutch
 * English
+* Japanese
 * Finnish
 * French
 * Hungarian
