@@ -9,13 +9,6 @@ identifier = 'examples'
 
 +++
 
-## Wiki Indexer
-
-The [bleve-wiki-indexer]({{< relref "docs/Wiki-Search.md" >}}) maintains a searchable bleve index of all these wiki pages.
-
-* [Source Code](https://github.com/blevesearch/bleve-wiki-indexer)
-* [Try it out, live](http://wikisearch.blevesearch.com/search/)
-
 ## Beer Search
 
 The [beer-search](https://github.com/blevesearch/beer-search) application shows many of bleve's features by allowing you to index and search beers and breweries.
