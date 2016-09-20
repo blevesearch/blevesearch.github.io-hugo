@@ -23,4 +23,4 @@ The [bleve-explorer](https://github.com/blevesearch/bleve-explorer) application 
 * [Video Introduction](https://www.youtube.com/watch?v=DfbRTXE5n4Y)
 
 ---
-See also: [other applications using bleve](https://github.com/blevesearch/bleve/wiki/Applications-using-bleve)
+See also: [other applications using bleve]({{< relref "docs/Applications-using-bleve.md" >}})
