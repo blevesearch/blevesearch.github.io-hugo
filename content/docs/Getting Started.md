@@ -12,10 +12,10 @@ parent = 'userguide'
 The simplest way to get started with bleve is to use the standard go get operation:
 
 ```
-go get github.com/blevesearch/bleve/... 
+go get github.com/blevesearch/bleve/...
 ```
 
-This will build a pure go version of bleve and install the command-line utilities.  Some of the more advanced functionality requires you have C/C++ libraries available.  See the [Building]({{< relref "docs/Building.md" >}}) page for more details.
+This will build a pure Go version of bleve and install the command-line utility.
 
 ### Your first bleve program
 
@@ -61,4 +61,3 @@ func main() {
 ```
 
 This should compile, run, and return one search hit for the item added.
-
