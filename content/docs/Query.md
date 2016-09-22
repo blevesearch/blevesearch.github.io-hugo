@@ -78,3 +78,7 @@ The match all query will match all documents in the index.
 ### Match None
 
 The match none query will not match any documents in the index.
+
+### Doc ID Query
+
+The doc ID query will match only documents that contain one of the supplied document identifiers.

@@ -33,9 +33,17 @@ Configuration:
 
 The Apostrophe Token Filter removes all characters after an apostrophe.
 
+### Camel Case
+
+The Camel Case Filter splits a token written in camel case into the set of tokens comprising it.  For example, the token `camelCase` would produce `camel` and `Case`.
+
 ### CLD2
 
 The CLD2 Token Filter will take the text from each token and pass it to the [Compact Language Detection 2](https://code.google.com/p/cld2/) library.  Each token is replaced with a new token corresponding to the ISO 639 language code detected.  Input text should already be converted to lower case.
+
+### Compound Word Dictionary
+
+The compound word dictionary filter lets you supply a dictionary of words that combine to form compound words and lets you index them individually.
 
 ### Edge n-gram
 
@@ -67,6 +75,14 @@ The Lowercase Token Filter will examine each input token and map all Unicode let
 
 The n-gram token filter computes n-grams from each input token.  There are two parameters, the minimum and maximum n-gram length.
 
+### Porter Stemmer
+
+The porter stemmer filter applies the Porter Stemming Algorithm to the input tokens.
+
+### Shingle
+
+The Shingle filter computes multi-token shingles from the input token stream.  For example, the token stream `the quick brown fox` when configured with a shingle minimum and maximum length of 2 would produce the tokens `the quick`, `quick brown` and `brown fox`.
+
 ### Stemmer
 
 The stemmer token filter takes input terms and applies a [stemming](http://en.wikipedia.org/wiki/Stemming) process to them.
@@ -82,7 +98,7 @@ The supported languages are:
 * French
 * German
 * Hungarian
-* Italian 
+* Italian
 * Norwegian
 * Porter
 * Portuguese

@@ -80,8 +80,8 @@ This shows use of a few of the other flags in a FieldMapping.  Here is the list:
 
 There are multiple levels at which you can configure the Default Analyzer if an explicit one isn't specified.
 
-1.  Each DocumentMapping has a field `DefaultAnalyzer`.  This means you can override the default analyzer for each sub-document.  
-2.  The IndexMapping also has a `DefaultAnalyzer`.  
+1.  Each DocumentMapping has a field `DefaultAnalyzer`.  This means you can override the default analyzer for each sub-document.
+2.  The IndexMapping also has a `DefaultAnalyzer`.
 
 The `DefaultAnalyzer` configured with the longest path match to a field will be used.
 
@@ -90,3 +90,13 @@ The `DefaultAnalyzer` configured with the longest path match to a field will be 
 * DateFormat - the name of a DateTimeParser that will be used to parse a date stored as a string
 
 You can configure a DefaultDateTimeParser in the IndexMapping object.
+
+## Understanding Default Type vs Default Mapping
+
+When Bleve cannot figure out which type a particular document is, it is automatically assigned the DefaultType.
+
+Once, Bleve has determined the type, it looks for a DocumentMapping matching this type name.  If there is no explicitly configured DocumentMapping for this type, then the DefaultMapping is used.
+
+The DefaultType will default to "_default", and the DefaultMapping will default to an empty default DocumentMapping.
+
+Consider an example from the beer-search sample application.  The mapping describes two types "beer" and "brewery".  For each of these an explicit DocumentMapping is provided.  If you attempt to index a document where the type field is missing, it will be assigned the type "_default".  Then Bleve looks to see if there is a mapping configured for "_default".  There is not, so then Bleve proceeds to use the DefaultMapping.

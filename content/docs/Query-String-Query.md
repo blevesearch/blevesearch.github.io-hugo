@@ -43,3 +43,24 @@ Example: `description:water name:water^5` will perform Match queries for `water`
 You can perform numeric ranges by using the >, >=, <, and <= operators, followed by a numeric value.
 
 Example: `abv:>10` will perform an [Numeric Range Query]({{< relref "docs/Query.md#numeric-range" >}}) on the `abv` field for values greater than ten.
+
+### Date Ranges
+You can perform date range searches by using the >, >=, <, and <= operators, followed by a date value in quotes.
+
+Example: `created:>"2016-09-21"` will perform an [Date Range Query]({{< relref "docs/Query.md#date-range" >}}) on the `created` field for values after September 21, 2016.
+
+### Escaping
+
+The following quoted string enumerates the characters which may be escaped:
+
+```
+"+-=&|><!(){}[]^\"~*?:\\/ "
+```
+
+NOTE: this list contains the space character.
+
+In order to escape these characters, they are prefixed with the \ (backslash) character.  In all cases, using the escaped version produces the character itself and is not interpreted by the lexer.
+
+Example: `my\ name` will be interpreted as a single argument to a match query with the value "my name".
+
+Example: `"contains a\" character"` will be interpreted as a single argument to a phrase query with the value `contains a " character`.

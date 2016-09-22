@@ -12,15 +12,17 @@ parent = 'analysis'
 
 The Single Token Tokenizer will return the entire input bytes as a single token.
 
+### Letter
+
+The letter tokenizer is a tokenizer that simply identifies tokens as sequences of Unicode runes that are part of the Letter category.
+
 ### Regular Expression
 
 The Regular Expression Tokenizer will tokenize input using a configurable regular expression.  The regular expression should match token text.  See the Whitespace Tokenizer for an example of its usage.
 
 ### Whitespace
 
-The Whitespace Tokenizer is an instance of the Regular Expression Tokenizer.  It matches tokens using the regular expression:
-
-    \p{Han}|\p{Hangul}|\p{Hiragana}|\p{Katakana}|[^\p{Z}\p{P}\p{C}\p{Han}\p{Hangul}\p{Hiragana}\p{Katakana}]+
+The Whitespace Tokenizer is tokenizer which simply identifies tokens as sequences of Unicode runes that are NOT part of the Space category.
 
 
 ### Unicode
@@ -32,3 +34,7 @@ The Unicode Tokenizer uses the [segment](https://github.com/blevesearch/segment)
 The ICU tokenizer uses the ICU library to tokenize the input using [Unicode Text Segmentation](http://www.unicode.org/reports/tr29/) on word boundaries.
 
 **NOTE:** This tokenizer requires bleve be built with the optional ICU package.  See the page on [Building]({{< relref "docs/Building.md" >}}).
+
+### Exception
+
+The exception tokenizer allows you to define exceptions.  Exceptions are sections of the input stream which match regular expressions.  These sections are left intact as single tokens.  Any input not matching these regular expressions is passed to the child tokenizer.

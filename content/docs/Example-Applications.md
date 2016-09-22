@@ -3,7 +3,7 @@ author = ["Marty Schoch"]
 date = "2015-06-23T10:25:38-04:00"
 title = "Example Applications"
 [menu.docs]
-weight = 16
+weight = 19
 parent = 'userguide'
 identifier = 'examples'
 
