@@ -44,7 +44,7 @@ after_success:
 - curl -sLO https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
 - tar zxvf google-cloud-sdk.tar.gz
 - touch /home/travis/.bashrc
-- google-cloud-sdk/install.sh --usage-reporting false --path-update true --rc-path=/home/travis/.bashrc --bash-completion true --override-components=app;
+- google-cloud-sdk/install.sh --usage-reporting false --path-update true --rc-path=/home/travis/.bashrc --bash-completion true
 - ls -l google-cloud-sdk/
 - cat google-cloud-sdk/path.bash.inc
 - source google-cloud-sdk/path.bash.inc
