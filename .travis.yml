@@ -13,6 +13,7 @@ before_install:
 install:
 - go get github.com/blevesearch/hugoidx
 - go get github.com/blevesearch/blevex/preload/...
+- go get google.golang.org/appengine/cmd/aedeploy
 before_script:
 - curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
 - tar zxvf hugo_0.14_linux_amd64.tar.gz
@@ -53,4 +54,4 @@ after_success:
 - gcloud components update preview app --quiet
 - gcloud auth activate-service-account --key-file gae_secret.json
 - cd bleve-hosted
-- gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
+- aedeploy gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
