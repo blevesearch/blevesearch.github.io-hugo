@@ -44,6 +44,8 @@ after_success:
 - curl -sLO https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
 - tar zxvf google-cloud-sdk.tar.gz
 - google-cloud-sdk/install.sh --usage-reporting false --path-update true --rc-path=~/.bashrc --bash-completion true --override-components=app;
+- ls -l google-cloud-sdk/
+- cat google-cloud-sdk/path.bash.inc
 - source google-cloud-sdk/path.bash.inc
 - google-cloud-sdk/bin/gcloud components update preview app --quiet
 - google-cloud-sdk/bin/gcloud auth activate-service-account --key-file gae_secret.json
