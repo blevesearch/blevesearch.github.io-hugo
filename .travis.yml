@@ -41,10 +41,7 @@ after_success:
 - rm -rf bleve-hosted/indexes/test.bleve
 - cp search.blexport bleve-hosted/indexes/search.bleve
 - ls -l bleve-hosted
-- curl -sLO https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
-- tar zxvf google-cloud-sdk.tar.gz
-- google-cloud-sdk/install.sh --usage-reporting false --path-update false --rc-path=~/.bashrc --bash-completion false --override-components=app;
-- google-cloud-sdk/bin/gcloud components update preview app --quiet
-- google-cloud-sdk/bin/gcloud auth activate-service-account --key-file gae_secret.json
+- curl https://sdk.cloud.google.com | bash
+- gcloud auth activate-service-account --key-file gae_secret.json
 - cd bleve-hosted
-- ../google-cloud-sdk/bin/gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
+- gcloud --project "bleve-search" preview app deploy "app.yaml"
