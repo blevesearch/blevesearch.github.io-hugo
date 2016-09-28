@@ -54,4 +54,5 @@ after_success:
 - gcloud components update preview app --quiet
 - gcloud auth activate-service-account --key-file gae_secret.json
 - cd bleve-hosted
+- go get -v .
 - aedeploy gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
