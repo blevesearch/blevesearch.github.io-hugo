@@ -14,7 +14,7 @@ before_install:
   -in travis_key.enc -out travis_key -d
 
 install:
-  - true
+  - go get github.com/blevesearch/hugoidx
 
 before_script:
     - curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
@@ -35,3 +35,6 @@ after_success:
     - git add -A .
     - git commit --allow-empty -m "Built from commit $REV"
     - git push origin master
+    - cd ..
+    - hugoidx
+    - ls -l search.bleve
