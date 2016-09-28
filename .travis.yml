@@ -56,4 +56,4 @@ after_success:
 - cd bleve-hosted
 - go get -v .
 - ls /home/travis/gopath/src/github.com/gorilla/mux
-- gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
+- aedeploy gcloud app deploy
