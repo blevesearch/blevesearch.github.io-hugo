@@ -21,6 +21,7 @@ before_script:
     - tar zxvf hugo_0.14_linux_amd64.tar.gz
 
 script:
+    - export REV=$(git rev-parse HEAD)
     - chmod 600 $SSH_KEY
     - eval `ssh-agent -s`
     - ssh-add $SSH_KEY
@@ -31,4 +32,6 @@ script:
 
 after_success:
     - cd public
-    - git diff
+    - git add -A .
+    - git commit --allow-empty -m "Built from commit $REV"
+    - git push origin master
