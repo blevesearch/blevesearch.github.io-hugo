@@ -1,48 +1,52 @@
 language: go
 
 go:
-    - "1.7.1"
+- 1.7.1
 
 env:
-    global:
-        - SSH_KEY="travis_key"
-        - GIT_NAME="Blevesearch Site Auto Publisher"
-        - GIT_EMAIL="mschoch@users.noreply.github.com"
-
+  global:
+  - SSH_KEY="travis_key"
+  - GIT_NAME="Blevesearch Site Auto Publisher"
+  - GIT_EMAIL="mschoch@users.noreply.github.com"
 before_install:
 - openssl aes-256-cbc -K $encrypted_4373be943248_key -iv $encrypted_4373be943248_iv
+  -in client-secret.json.enc -out client-secret.json -d
+- openssl aes-256-cbc -K $encrypted_4373be943248_key -iv $encrypted_4373be943248_iv
   -in travis_key.enc -out travis_key -d
-
 install:
-  - go get github.com/blevesearch/hugoidx
-  - go get github.com/blevesearch/blevex/preload/...
-
+- go get github.com/blevesearch/hugoidx
+- go get github.com/blevesearch/blevex/preload/...
 before_script:
-    - curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
-    - tar zxvf hugo_0.14_linux_amd64.tar.gz
-
+- curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
+- tar zxvf hugo_0.14_linux_amd64.tar.gz
 script:
-    - export REV=$(git rev-parse HEAD)
-    - chmod 600 $SSH_KEY
-    - eval `ssh-agent -s`
-    - ssh-add $SSH_KEY
-    - git config --global user.name "$GIT_NAME"
-    - git config --global user.email "$GIT_EMAIL"
-    - git clone git@github.com:blevesearch/blevesearch.github.io.git public
-    - hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
-
+- export REV=$(git rev-parse HEAD)
+- chmod 600 $SSH_KEY
+- eval `ssh-agent -s`
+- ssh-add $SSH_KEY
+- git config --global user.name "$GIT_NAME"
+- git config --global user.email "$GIT_EMAIL"
+- git clone git@github.com:blevesearch/blevesearch.github.io.git public
+- hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
 after_success:
-    - cd public
-    - git add -A .
-    - git commit --allow-empty -m "Built from commit $REV"
-    - git push origin master
-    - cd ..
-    - hugoidx
-    - ls -l search.bleve
-    - bleve_export search.bleve search.blexport
-    - ls -l search.blexport
-
+- cd public
+- git add -A .
+- git commit --allow-empty -m "Built from commit $REV"
+- git push origin master
+- cd ..
+- hugoidx
+- ls -l search.bleve
+- bleve_export search.bleve search.blexport
+- ls -l search.blexport
 before_deploy:
-    - git clone https://github.com/blevesearch/bleve-hosted.git
-    - ls -l
-    - ls -l bleve-hosted
+- git clone https://github.com/blevesearch/bleve-hosted.git
+- ls -l
+- ls -l bleve-hosted
+- rm -rf bleve-hosted/indexes/test.bleve
+- cp search.blexport bleve-hosted/indexes/search.bleve
+- ls -l bleve-hosted
+deploy:
+  provider: gae
+  keyfile: client-secret.json
+  project: bleve-search
+  config: bleve-hosted/app.yaml
