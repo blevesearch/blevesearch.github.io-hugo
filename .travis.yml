@@ -56,4 +56,5 @@ after_success:
 - cd bleve-hosted
 - go get -v .
 - ls /home/travis/gopath/src/github.com/gorilla/mux
+- ls /home/travis/gopath/src/github.com/gorilla/context
 - aedeploy gcloud app deploy
