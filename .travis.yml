@@ -41,3 +41,8 @@ after_success:
     - ls -l search.bleve
     - bleve_export search.bleve search.blexport
     - ls -l search.blexport
+
+before_deploy:
+    - git clone https://github.com/blevesearch/bleve-hosted.git
+    - ls -l
+    - ls -l bleve-hosted
