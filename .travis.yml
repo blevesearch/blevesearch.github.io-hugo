@@ -21,7 +21,7 @@ before_script:
     - tar zxvf hugo_0.14_linux_amd64.tar.gz
 
 script:
-    - hugo_0.14_linux_amd64/hugo -s .
+    - hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
 
 after_success:
     - ls -l public
