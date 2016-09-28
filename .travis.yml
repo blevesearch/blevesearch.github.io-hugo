@@ -15,6 +15,7 @@ before_install:
 
 install:
   - go get github.com/blevesearch/hugoidx
+  - go get github.com/blevesearch/blevex/preload/...
 
 before_script:
     - curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
@@ -38,3 +39,5 @@ after_success:
     - cd ..
     - hugoidx
     - ls -l search.bleve
+    - bleve_export search.bleve search.blexport
+    - ls -l search.blexport
