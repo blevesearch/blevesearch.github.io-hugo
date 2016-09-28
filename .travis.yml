@@ -21,7 +21,14 @@ before_script:
     - tar zxvf hugo_0.14_linux_amd64.tar.gz
 
 script:
+    - chmod 600 $SSH_KEY
+    - eval `ssh-agent -s`
+    - ssh-add $SSH_KEY
+    - git config --global user.name "$GIT_NAME"
+    - git config --global user.email "$GIT_EMAIL"
+    - git clone git@github.com:blevesearch/blevesearch.github.io.git public
     - hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
 
 after_success:
-    - ls -l public
+    - cd public
+    - git diff
