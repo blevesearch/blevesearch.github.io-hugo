@@ -47,3 +47,4 @@ deploy:
   keyfile: gae_secret.json
   project: bleve-search
   config: bleve-hosted/app.yaml
+  skip_cleanup: true
