@@ -14,6 +14,7 @@ install:
 - go get github.com/blevesearch/hugoidx
 - go get github.com/blevesearch/blevex/preload/...
 - go get google.golang.org/appengine/cmd/aedeploy
+- go get -u github.com/FiloSottile/gvt
 before_script:
 - curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
 - tar zxvf hugo_0.14_linux_amd64.tar.gz
@@ -45,11 +46,13 @@ after_success:
 - gcloud components update preview app --quiet
 - gcloud auth activate-service-account --key-file gae_secret.json
 - cd bleve-hosted
-- go get -v .
-- go get github.com/gorilla/context
-- go get github.com/blevesearch/bleve/analysis
-- go get github.com/blevesearch/bleve/registry
-- go get github.com/blevesearch/bleve/document
-- ls -l /home/travis/gopath/src/github.com/blevesearch/bleve/analysis
+- gvt fetch github.com/blevesearch/bleve
+- ls -l vendor
+# - go get -v .
+# - go get github.com/gorilla/context
+# - go get github.com/blevesearch/bleve/analysis
+# - go get github.com/blevesearch/bleve/registry
+# - go get github.com/blevesearch/bleve/document
+#- ls -l /home/travis/gopath/src/github.com/blevesearch/bleve/analysis
 - gcloud config set project bleve-search
-- aedeploy gcloud app deploy --quiet
+- gcloud app deploy --quiet
