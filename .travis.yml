@@ -47,7 +47,9 @@ after_success:
 - cd bleve-hosted
 - go get -v .
 - go get github.com/gorilla/context
-- go get github.com/blevesearch/bleve/...
+- go get github.com/blevesearch/bleve/analysis
+- go get github.com/blevesearch/bleve/registry
+- go get github.com/blevesearch/bleve/document
 - ls -l /home/travis/gopath/src/github.com/blevesearch/bleve/analysis
 - gcloud config set project bleve-search
 - aedeploy gcloud app deploy --quiet
