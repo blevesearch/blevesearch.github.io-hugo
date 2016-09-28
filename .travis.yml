@@ -55,4 +55,5 @@ after_success:
 - gcloud auth activate-service-account --key-file gae_secret.json
 - cd bleve-hosted
 - go get -v .
-- aedeploy gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
+- ls /home/travis/gopath/src/github.com/gorilla/mux
+- gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
