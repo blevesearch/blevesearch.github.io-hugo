@@ -47,7 +47,9 @@ after_success:
 - ls -l google-cloud-sdk/
 - cat google-cloud-sdk/path.bash.inc
 - source google-cloud-sdk/path.bash.inc
-- google-cloud-sdk/bin/gcloud components update preview app --quiet
-- google-cloud-sdk/bin/gcloud auth activate-service-account --key-file gae_secret.json
+- printenv PATH
+- ls -l google-cloud-sdk/bin/
+- gcloud components update preview app --quiet
+- gcloud auth activate-service-account --key-file gae_secret.json
 - cd bleve-hosted
-- ../google-cloud-sdk/bin/gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
+- gcloud --project "bleve-search" preview app deploy --quiet "app.yaml"
