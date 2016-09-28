@@ -58,4 +58,5 @@ after_success:
 - ls /home/travis/gopath/src/github.com/gorilla/mux
 - go get github.com/gorilla/context
 - ls /home/travis/gopath/src/github.com/gorilla/context
+- gcloud config set project bleve-search
 - aedeploy gcloud app deploy
