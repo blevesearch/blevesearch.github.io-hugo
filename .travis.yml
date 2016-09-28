@@ -1,0 +1,24 @@
+language: go
+
+go:
+    - "1.7.1"
+
+env:
+    global:
+        - SSH_KEY="travis_key"
+        - GIT_NAME="Blevesearch Site Auto Publisher"
+        - GIT_EMAIL="mschoch@users.noreply.github.com"
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_4373be943248_key -iv $encrypted_4373be943248_iv
+  -in travis_key.enc -out travis_key -d
+
+before_script:
+    - curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
+    - tar zxvf hugo_0.14_linux_amd64.tar.gz
+
+script:
+    - hugo_0.14_linux_amd64/hugo -s .
+
+after_success:
+    - ls -l public
