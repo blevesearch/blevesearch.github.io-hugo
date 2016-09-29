@@ -15,7 +15,7 @@ An analyzer transforms input Text into a [Token Stream]({{< relref "docs/Termino
 A character filter processes input text to remove undesirable characters.  For example, if your input documents are HTML pages, you might use a character to remove the HTML tags.  Sometimes character filters replace the input characters with whitespace so as not to disturb the original byte offsets of the remaining text.
 
 ### Term
-A term is a sequence of unicode characters.  Typically the word "term" is reserved for uses describing the things we write into indexes or the things we're looking for in indexes.  For example, the text "mary had a little marty", might result in 3 terms being inserted into the index: "mary", "little", and "marty".
+A term is a sequence of unicode characters.  Typically the word "term" is reserved for uses describing the things we write into indexes or the things we're looking for in indexes.  For example, the text "mary had a little lamb", might result in 3 terms being inserted into the index: "mary", "little", and "lamb".
 
 ### Token
 A token is an occurrence of a [term]({{< relref "docs/Terminology.md#term" >}}) at a particular location in a document or field.
