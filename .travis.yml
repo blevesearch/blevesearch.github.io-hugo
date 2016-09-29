@@ -13,8 +13,8 @@ before_install:
 install:
 - go get github.com/blevesearch/hugoidx
 - go get github.com/blevesearch/blevex/preload/...
-- go get google.golang.org/appengine/cmd/aedeploy
-- go get -u github.com/FiloSottile/gvt
+#- go get google.golang.org/appengine/cmd/aedeploy
+#- go get -u github.com/FiloSottile/gvt
 before_script:
 - curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
 - tar zxvf hugo_0.14_linux_amd64.tar.gz
@@ -42,8 +42,8 @@ after_success:
 - unzip -q go_appengine_sdk_linux_amd64-1.9.40.zip
 - go get -u -v github.com/gorilla/mux
 - cd bleve-hosted
-- export TS=`git rev-parse HEAD`
-- ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH update -A bleve-search -V $TS .
+- ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH update -A bleve-search -V $REV .
+- ../go_appengine/appcfg.py set_default_version -A bleve-search -V $REV
 # - curl -sLO https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
 # - tar zxvf google-cloud-sdk.tar.gz
 # - touch /home/travis/.bashrc
