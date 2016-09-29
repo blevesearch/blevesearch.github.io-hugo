@@ -43,7 +43,7 @@ after_success:
 - go get -u -v github.com/gorilla/mux
 - cd bleve-hosted
 - ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH update -A bleve-search -V $REV .
-- ../go_appengine/appcfg.py set_default_version -A bleve-search -V $REV
+- ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH set_default_version -A bleve-search -V $REV
 # - curl -sLO https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
 # - tar zxvf google-cloud-sdk.tar.gz
 # - touch /home/travis/.bashrc
