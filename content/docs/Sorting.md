@@ -30,7 +30,7 @@ There are two special fields defined for use:
 Here is a more complex example:
 
 ```go
-searchRequest.SortBy([]string{"age", "-_score", "_id})
+searchRequest.SortBy([]string{"age", "-_score", "_id"})
 ```
 
 This will first sort results by the "age" field.  If two documents have the same value for this field, they will then be sorted by the score descending, finally, if documents have the same age and score, they will be sorted by document ID ascending.
