@@ -40,3 +40,8 @@ Locally index and search database dumps from https://openbay.isohunt.to
 A Syslog server with built-in search for received log messages.
 
 * https://github.com/ekanite/ekanite
+
+## geocatalogo
+geocatalogo is a geospatial Catalogue in Go
+
+* https://github.com/tomkralidis/geocatalogo
