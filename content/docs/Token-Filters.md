@@ -13,7 +13,7 @@ Analyzers reference Token Filters by name. Use existing ones or create variants 
 var m *IndexMapping = index.Mapping()
 err := m.AddCustomTokenFilter("color_stop_filter", map[string]interface{}{
     "type": stop_tokens_filter.Name,
-    "tokens": []interface{
+    "tokens": []interface{}{
         "red",
         "green",
         "blue",
