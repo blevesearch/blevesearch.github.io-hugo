@@ -1,4 +1,4 @@
-baseurl = "http://www.blevesearch.com/"
+baseurl = "https://www.blevesearch.com/"
 languageCode = "en-us"
 title = "Bleve"
 theme = "bleve"
