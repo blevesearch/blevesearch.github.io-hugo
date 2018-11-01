@@ -34,7 +34,7 @@ func main() {
           <h3>Upcoming Events <small>(<a href="/events/">See All</a>)</small></h3>
           <ul>
             {{ range (where .Data.Pages "Section" "events") }}
-              {{if ge .Date.Unix .Now.Unix }}
+              {{if ge .Date.Unix now.Unix }}
                 <li class="on-the-road">
                   <a href="{{.Permalink }}">
                     <figure>

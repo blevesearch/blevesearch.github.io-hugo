@@ -6,7 +6,7 @@
 <h3>Upcoming</h3>
 <ul>
 {{ range (where .Data.Pages "Section" "events") }}
-	{{ if ge .Date.Unix .Now.Unix }}
+	{{ if ge .Date.Unix now.Unix }}
 		<li class="events-list">
 			<a href="{{ .Permalink }}">
 				<h4>{{ .Date.Format "Jan 2006" }} <img width="64" src="/img/events/{{.Params.icon}}"/> {{ .Title }}</h4>
@@ -20,7 +20,7 @@ Want us to speak at your meetup or conference?  <a href="mailto:info@blevesearch
 <h3>Past</h3>
 <ul>
 {{ range (where .Data.Pages "Section" "events") }}
-	{{ if lt .Date.Unix .Now.Unix }}
+	{{ if lt .Date.Unix now.Unix }}
 		<li class="events-list">
 			<a href="{{ .Permalink }}">
 				<h4>{{ .Date.Format "Jan 2006" }} <img width="64" src="/img/events/{{.Params.icon}}"/> {{ .Title }}</h4>

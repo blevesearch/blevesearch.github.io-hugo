@@ -16,8 +16,8 @@ install:
 #- go get google.golang.org/appengine/cmd/aedeploy
 #- go get -u github.com/FiloSottile/gvt
 before_script:
-- curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
-- tar zxvf hugo_0.14_linux_amd64.tar.gz
+- curl -sLO https://github.com/gohugoio/hugo/releases/download/v0.50/hugo_0.50_Linux-64bit.tar.gz
+- tar zxvf hugo_0.50_Linux-64bit.tar.gz
 script:
 - export REV=$(git rev-parse HEAD)
 - chmod 600 $SSH_KEY
@@ -26,7 +26,7 @@ script:
 - git config --global user.name "$GIT_NAME"
 - git config --global user.email "$GIT_EMAIL"
 - git clone git@github.com:blevesearch/blevesearch.github.io.git public
-- hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
+- hugo_0.50_Linux-64bit/hugo_0.50_Linux-64bit -s .
 after_success:
 - cd public
 - git add -A .
