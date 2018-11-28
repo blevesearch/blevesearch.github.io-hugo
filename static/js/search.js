@@ -1,5 +1,5 @@
 // the URL of your hosted search index
-var searchURL = 'https://bleve-search.appspot.com/api/search.bleve/_search'
+var searchURL = 'https://blevesearch.couchbase.com/api/search.bleve/_search'
 
 // the number of resuts to show per page
 var resultsPerPage = 10;

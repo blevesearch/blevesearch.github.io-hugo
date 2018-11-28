@@ -22,7 +22,7 @@ An introduction to the Bleve project given at GopherCon India in Bengaluru.
 
 ### Bleve Analysis Wizard
 
-The [Bleve Text Analysis Wizard](http://analysis.blevesearch.com/) is a tool to help users experiment with the effects different analyzers have on their text.  Below is a short video showing how the tool works.
+The [Bleve Text Analysis Wizard](http://bleveanalysis.couchbase.com/) is a tool to help users experiment with the effects different analyzers have on their text.  Below is a short video showing how the tool works.
 
 {{< youtube CEfaIlzki5U >}}
 
