@@ -38,12 +38,13 @@ after_success:
 - git clone https://github.com/blevesearch/bleve-hosted.git
 - rm -rf bleve-hosted/indexes/test.bleve
 - cp search.blexport bleve-hosted/indexes/search.bleve
-- curl -sLO https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-1.9.40.zip
-- unzip -q go_appengine_sdk_linux_amd64-1.9.40.zip
 - go get -u -v github.com/gorilla/mux
 - cd bleve-hosted
-- ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH update -A bleve-search -V $REV .
-- ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH set_default_version -A bleve-search -V $REV
+# TODO: Deploying search.bleve
+# - curl -sLO https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-1.9.40.zip
+# - unzip -q go_appengine_sdk_linux_amd64-1.9.40.zip
+# - ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH update -A bleve-search -V $REV .
+# - ../go_appengine/appcfg.py --oauth2_refresh_token=$GAE_OAUTH set_default_version -A bleve-search -V $REV
 # - curl -sLO https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
 # - tar zxvf google-cloud-sdk.tar.gz
 # - touch /home/travis/.bashrc
