@@ -49,6 +49,17 @@ You can perform date range searches by using the >, >=, <, and <= operators, fol
 
 Example: `created:>"2016-09-21"` will perform an [Date Range Query]({{< relref "docs/Query.md#date-range" >}}) on the `created` field for values after September 21, 2016.
 
+### Prefix wildcard
+You can perform prefix wildcard queries by adding `*` to the term. This is specially useful for typeahead systems.
+
+Example: `lig*` will perform a [Prefix Query]({{< relref "docs/Query.md#prefix" >}}) matching items that start with `lig`, including       `light`, `lightning` and `ligature`.
+
+You can also use Field Scoping, limiting the results to a specific field, for example: `name:lig*` will match records in where the `name` field starts with `lig`.
+
+`*` will match any sequence of characters.
+
+`?` will match a single character.
+
 ### Escaping
 
 The following quoted string enumerates the characters which may be escaped:
