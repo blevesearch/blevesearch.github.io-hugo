@@ -10,7 +10,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_4373be943248_key -iv $encrypted_4373be943248_iv
   -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
-install:
+#install:
 #- go get github.com/blevesearch/hugoidx
 #- go get github.com/blevesearch/blevex/preload/...
 #- go get google.golang.org/appengine/cmd/aedeploy
