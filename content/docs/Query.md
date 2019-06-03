@@ -57,7 +57,7 @@ The boolean query is useful combination of conjunction and disjunction queries. 
 * should - result documents should satisfy at least `minShould` of these queries
 * must not - result documents must not satisfy any of these queries
 
-The `minShould` value is configurable, but defaults 1 if there is at least 1 should query.
+The `minShould` value is configurable, defaults to 0.
 
 ### Numeric Range
 
