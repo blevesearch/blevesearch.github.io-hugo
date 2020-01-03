@@ -1,6 +1,6 @@
 language: go
 go:
-- 1.9.x
+- 1.13.x
 env:
   global:
   - SSH_KEY="travis_key"
