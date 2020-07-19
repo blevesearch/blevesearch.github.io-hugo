@@ -8,7 +8,7 @@ parent = 'userguide'
 
 +++
 
-In bleve, the IndexMapping describes how to your data model should be indexed.
+In bleve, the IndexMapping describes how your data model should be indexed.
 
 ## Default IndexMapping
 
@@ -53,7 +53,7 @@ nameFieldMapping.Analyzer = "en"
 blogMapping.AddFieldMappingsAt("name", nameFieldMapping)
 ```
 
-Now let's say our blog documents have a nested structure describing the `author` field field `name` and `email`.  This time lets say we want index (default) but not store the author name.  And we want to exclude the email address from the `_all` field.
+Now let's say our blog documents have a nested structure describing the `author` field using sub-fields `name` and `email`.  This time lets say we want index (default) but not store the author name.  And we want to exclude the email address from the `_all` field.
 
 ```go
 author := bleve.NewDocumentMapping()
@@ -71,7 +71,7 @@ This shows use of a few of the other flags in a FieldMapping.  Here is the list:
 * Index - index this field, defaults to true
 * Store - store this field, defaults to true
 * IncludeTermVectors - include term vectors for this field, defaults to true
-* IncludeInAll - includes this field in the compostie field named `_all`, defaults to true
+* IncludeInAll - includes this field in the composite field named `_all`, defaults to true
 
 
 ## Text Field specific options

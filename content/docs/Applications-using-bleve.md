@@ -40,3 +40,8 @@ Locally index and search database dumps from https://openbay.isohunt.to
 A Syslog server with built-in search for received log messages.
 
 * https://github.com/ekanite/ekanite
+
+## Blast
+Blast is a search and indexing server built on Bleve. Makes it easy to bring up high-availability cluster with Raft consensus algorithm.
+
+* https://github.com/mosuka/blast

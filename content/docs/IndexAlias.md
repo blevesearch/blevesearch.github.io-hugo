@@ -8,7 +8,7 @@ parent = 'userguide'
 
 +++
 
-Bleve has a powerful feature called an `IndexAlias`.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.
+Bleve has a powerful feature called an `IndexAlias`.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be used to search across multiple indexes at the same time and correctly merge the results.
 
 ### IndexAlias Interface
 First, its useful to note that thanks to Go interfaces, an IndexAlias is also an Index.  This means that in general you work with an IndexAlias just as you would work with an Index.  The alias concept also adds 3 methods:  Add(), Remove(), and Swap()
@@ -31,7 +31,7 @@ Your application will safely switch to searching the new index.
 
 1.  Create more than one Index
 2.  Create the IndexAlias pointing to these indexes
-3.  Writer your application to invoke Search() on the IndexAlias
+3.  Write your application to invoke Search() on the IndexAlias
 
 Your application will search across all the underlying indexes at the same time, and the results will be merged together into a single result.
 
