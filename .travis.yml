@@ -12,7 +12,7 @@ before_install:
 - tar xvf secrets.tar
 install:
 #- go get github.com/blevesearch/hugoidx
-- go get github.com/blevesearch/blevex/preload/...
+#- go get github.com/blevesearch/blevex/preload/...
 #- go get google.golang.org/appengine/cmd/aedeploy
 #- go get -u github.com/FiloSottile/gvt
 before_script:
