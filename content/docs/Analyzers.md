@@ -18,7 +18,7 @@ The Keyword Analyzer does not perform any analysis on the input text.  It create
 
 The simple analyzer performs only minimal analysis on the input.
 
-* Tokenizer - [Unicode]({{< relref "docs/Tokenizers.md#unicode" >}})
+* Tokenizer - [Letter]({{< relref "docs/Tokenizers.md#letter" >}})
 * Token Filters
   * [Lowercase]({{< relref "docs/Token-Filters.md#lowercase" >}})
 
