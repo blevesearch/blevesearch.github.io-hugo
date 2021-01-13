@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+        with:
+          persist-credentials: false
       - name: Install Ancient Version of Hugo
         run: |
           curl -sLO https://github.com/spf13/hugo/releases/download/v0.14/hugo_0.14_linux_amd64.tar.gz
@@ -16,4 +18,12 @@ jobs:
         run: |
           hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
           ls -l public
+      - name: Deploy
+          uses: JamesIves/github-pages-deploy-action@3.7.1
+          with:
+            REPOSITORY_NAME: blevesearch/blevesearch.github.io
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+            BRANCH: master # The branch the action should deploy to.
+            FOLDER: public # The folder the action should deploy.
+            CLEAN: true # Automatically remove deleted files from the deploy branch
 
