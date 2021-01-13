@@ -8,6 +8,8 @@ parent = 'devguide'
 
 +++
 
+## The instructions on this page are no longer applicable to bleve v2
+
 Some of the [blevex]({{< relref "docs/Blevex.md" >}}) packages require C/C++ libraries.
 
 In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_... environment variables so that the libraries and headers can be found.

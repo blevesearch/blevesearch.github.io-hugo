@@ -14,7 +14,7 @@ bleve is organized into a large number of packages.
 
 The top-level bleve package is designed to provide an easy to use wrapper around all of the lower-level packages.
 
-## Analysis 
+## Analysis
 
 The analysis package contains all of the code related to analyzed text.  Generally this package is independent of everything else.  Should not depend on the index or search packages.
 
@@ -56,13 +56,11 @@ The document package contains the code related to bleve documents and fields.  D
 
 ## Index
 
-The index package contains all of the code related to putting bits on disk in such a way to facilitate searching later.
-
-#### Store
-The store package defines an general KV store interface.  This interface allows index implementations to plug in alternative KV stores easily.
-
 #### upside_down
-The upside_down package is the inverted index implementation.  It can use any Store implementation.  This has all of the details around how individual rows are encoded.
+The upside_down package is the original inverted index implementation.  It can use any Store implementation.  This has all of the details around how individual rows are encoded.  This implementation is now deprecated.
+
+#### scorch
+The index implementation recommended for production use.
 
 ## HTTP
 
@@ -95,7 +93,3 @@ The scorers package is responsible for scoring search result hits.  These result
 #### Searchers
 
 The searchers package contain the actual searcher implementations.
-
-## Utils
-
-This package contains all of the command-line utilities.
