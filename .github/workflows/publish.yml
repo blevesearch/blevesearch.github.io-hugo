@@ -19,11 +19,11 @@ jobs:
           hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
           ls -l public
       - name: Deploy
-          uses: JamesIves/github-pages-deploy-action@3.7.1
-          with:
-            REPOSITORY_NAME: blevesearch/blevesearch.github.io
-            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-            BRANCH: master # The branch the action should deploy to.
-            FOLDER: public # The folder the action should deploy.
-            CLEAN: true # Automatically remove deleted files from the deploy branch
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          REPOSITORY_NAME: blevesearch/blevesearch.github.io
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: master # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
 
