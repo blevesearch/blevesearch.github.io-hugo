@@ -9,17 +9,15 @@ parent = 'userguide'
 +++
 
 
-The simplest way to get started with bleve is to use the standard go get operation:
+The simplest way to get started with bleve is to create a new module:
 
 ```
-go get github.com/blevesearch/bleve/...
+go mod init <your application>
 ```
-
-This will build a pure Go version of bleve and install the command-line utility.
 
 ### Your first bleve program
 
-Create a new package, edit main.go and paste:
+Edit main.go and paste:
 
 ```go
 package main
