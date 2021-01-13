@@ -1,6 +1,6 @@
 +++
 author = ["Marty Schoch"]
-date = "2021-01-13T14:32:38-04:00"
+date = "2021-01-13T13:32:38-04:00"
 title = "Bleve v2.0.0 Released"
 +++
 
