@@ -9,7 +9,7 @@ identifier = 'queries'
 
 +++
 
-Queries supported by bleve:
+Queries supported by bleve. Note the example code on this page assumes you have created a bleve index with the sample data from the [beer-search](https://github.com/blevesearch/beer-search) application.
 
 ### Term
 
@@ -17,17 +17,81 @@ A term query is the simplest possible query.  It performs an exact match in the 
 
 Most of the time users should use a Match Query instead.
 
+```go
+package main
+
+func main() {
+    index, err := bleve.Open("beer-search.bleve")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    q := bleve.NewTermQuery("golden")
+    req := bleve.NewSearchRequest(q)
+    req.Highlight = bleve.NewHighlightWithStyle("html")
+    req.Fields = []string{"discription"}
+    res, err := index.Search(req)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(res)
+}
+
+```
+
 ### Match
 
 A match query is like a term query, but the input text is analyzed first.  An attempt is made to use the same analyzer that was used when the field was indexed.
 
 The match query can optionally perform fuzzy matching.  If the fuzziness parameter is set to a non-zero integer the analyzed text will be matched with the specified level of fuzziness.  Also, the prefix_length parameter can be used to require that the term also have the same prefix of the specified length.
 
+```go
+package main
+
+func main() {
+    index, err := bleve.Open("beer-search.bleve")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    q := bleve.NewMatchQuery("golden")
+    req := bleve.NewSearchRequest(q)
+    req.Fields = []string{"discription"}
+    res, err := index.Search(req)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(res)
+}
+
+```
+
 ### Phrase
 
 A phrase query searches for terms occurring in the specified position and offsets.
 
 The phrase query is performing an exact term match for all the phrase constituents.  If you want the phrase to be analyzed, consider using the Match Phrase Query instead.
+
+
+```go
+package main
+
+func main() {
+    index, err := bleve.Open("beer-search.bleve")
+    if err != nil {
+        log.Fatal(err)
+    }
+    phrase := []string{"deep", "golden", "color"}
+    q := bleve.NewPhraseQuery(phrase, "description")
+    req := bleve.NewSearchRequest(q)
+    req.Fields = []string{"description"}
+    res, err := index.Search(req)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(res)
+}
+```
 
 ### Match Phrase
 
@@ -41,9 +105,52 @@ The prefix query finds documents containing terms that start with the provided p
 
 A fuzzy query is a term query that matches terms within a specified edit distance (Levenshtein distance).  Also, you can optionally specify that the term must have a matching prefix of the specified length.
 
+```go
+package main
+
+func main() {
+
+    index, err := bleve.Open("beer-search.bleve")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fq := bleve.NewFuzzyQuery("Citrus") // HLBLEVE
+    req := bleve.NewSearchRequest(fq)
+    req.Fields = []string{"description"}
+    res, err := index.Search(req)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(res)
+}
+
+```
+
 ### Conjunction
 
 The conjunction query is a compound query.  Result documents must satisfy all of the child queries.
+
+```go
+package main
+
+func main() {
+    index, err := bleve.Open("beer-search.bleve")
+    if err != nil {
+        log.Fatal(err)
+    }
+    tq1 := bleve.NewTermQuery("golden")
+    tq2 := bleve.NewTermQuery("Citrus")
+    q := bleve.NewConjunctionQuery([]bleve.Query{tq1, tq2})
+    req := bleve.NewSearchRequest(q)
+    req.Fields = []string{"description"}
+    res, err := index.Search(req)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(res)
+}
+```
 
 ### Disjunction
 
