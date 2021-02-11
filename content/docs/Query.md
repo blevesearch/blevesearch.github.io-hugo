@@ -11,6 +11,23 @@ identifier = 'queries'
 
 Queries supported by bleve. Note the example code on this page assumes you have created a bleve index with the sample data from the [beer-search](https://github.com/blevesearch/beer-search) application.
 
+Here is a sample record that we can target with the search examples below:
+```json
+{
+    "name": "Watermelon Wheat",
+    "abv": 5.5,
+    "ibu": 0.0,
+    "srm": 0.0,
+    "upc": 0,
+    "type": "beer",
+    "brewery_id": "21st_amendment_brewery_cafe",
+    "updated": "2010-07-22 20:00:20",
+    "description": "The definition of summer in a pint glass. This unique, American-style wheat beer, is brewed with 400 lbs. of fresh pressed watermelon in each batch. Light turbid, straw color, with the taste and essence of fresh watermelon. Finishes dry and clean. Now Available in Cans!",
+    "style": "Belgian-Style Fruit Lambic",
+    "category": "Belgian and French Ale"
+}
+```
+
 ### Term
 
 A term query is the simplest possible query.  It performs an exact match in the index for the provided term.
@@ -18,25 +35,7 @@ A term query is the simplest possible query.  It performs an exact match in the 
 Most of the time users should use a Match Query instead.
 
 ```go
-package main
-
-func main() {
-    index, err := bleve.Open("beer-search.bleve")
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    q := bleve.NewTermQuery("golden")
-    req := bleve.NewSearchRequest(q)
-    req.Highlight = bleve.NewHighlightWithStyle("html")
-    req.Fields = []string{"discription"}
-    res, err := index.Search(req)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Println(res)
-}
-
+q := bleve.NewTermQuery("golden")
 ```
 
 ### Match
@@ -46,24 +45,7 @@ A match query is like a term query, but the input text is analyzed first.  An at
 The match query can optionally perform fuzzy matching.  If the fuzziness parameter is set to a non-zero integer the analyzed text will be matched with the specified level of fuzziness.  Also, the prefix_length parameter can be used to require that the term also have the same prefix of the specified length.
 
 ```go
-package main
-
-func main() {
-    index, err := bleve.Open("beer-search.bleve")
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    q := bleve.NewMatchQuery("golden")
-    req := bleve.NewSearchRequest(q)
-    req.Fields = []string{"discription"}
-    res, err := index.Search(req)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Println(res)
-}
-
+q := bleve.NewMatchQuery("golden")
 ```
 
 ### Phrase
@@ -74,28 +56,16 @@ The phrase query is performing an exact term match for all the phrase constituen
 
 
 ```go
-package main
-
-func main() {
-    index, err := bleve.Open("beer-search.bleve")
-    if err != nil {
-        log.Fatal(err)
-    }
-    phrase := []string{"deep", "golden", "color"}
-    q := bleve.NewPhraseQuery(phrase, "description")
-    req := bleve.NewSearchRequest(q)
-    req.Fields = []string{"description"}
-    res, err := index.Search(req)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Println(res)
-}
+phrase := []string{"deep", "golden", "color"}
+q := bleve.NewPhraseQuery(phrase, "description")
 ```
 
 ### Match Phrase
 
 The match phrase query is like the phrase query, but the input text is analyzed and a phrase query is built with the terms resulting from the analysis.
+```go
+q := bleve.NewMatchPhraseQuery("fresh pressed watermelon in each batch")
+```
 
 ### Prefix
 
@@ -106,25 +76,8 @@ The prefix query finds documents containing terms that start with the provided p
 A fuzzy query is a term query that matches terms within a specified edit distance (Levenshtein distance).  Also, you can optionally specify that the term must have a matching prefix of the specified length.
 
 ```go
-package main
-
-func main() {
-
-    index, err := bleve.Open("beer-search.bleve")
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    fq := bleve.NewFuzzyQuery("Citrus") // HLBLEVE
-    req := bleve.NewSearchRequest(fq)
-    req.Fields = []string{"description"}
-    res, err := index.Search(req)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Println(res)
-}
-
+q := bleve.NewFuzzyQuery("Citrus")
+q.SetFuzziness(3)
 ```
 
 ### Conjunction
@@ -132,29 +85,20 @@ func main() {
 The conjunction query is a compound query.  Result documents must satisfy all of the child queries.
 
 ```go
-package main
-
-func main() {
-    index, err := bleve.Open("beer-search.bleve")
-    if err != nil {
-        log.Fatal(err)
-    }
-    tq1 := bleve.NewTermQuery("golden")
-    tq2 := bleve.NewTermQuery("Citrus")
-    q := bleve.NewConjunctionQuery([]bleve.Query{tq1, tq2})
-    req := bleve.NewSearchRequest(q)
-    req.Fields = []string{"description"}
-    res, err := index.Search(req)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Println(res)
-}
+tq1 := bleve.NewTermQuery("golden")
+tq2 := bleve.NewTermQuery("Citrus")
+q := bleve.NewConjunctionQuery([]bleve.Query{tq1, tq2})
 ```
 
 ### Disjunction
 
 The disjunction query is a compound query.  Result documents must satisfy a configurable `min` number of child queries.  By default this `min` is set to 1.
+
+```go
+tq1 := bleve.NewTermQuery("golden")
+tq2 := bleve.NewTermQuery("Citrus")
+q := bleve.NewDisjunctionQuery([]bleve.Query{tq1, tq2})
+```
 
 ### Boolean
 
@@ -189,3 +133,20 @@ The match none query will not match any documents in the index.
 ### Doc ID Query
 
 The doc ID query will match only documents that contain one of the supplied document identifiers.
+
+## Tips
+Some helpful hints for using the search query apis.
+
+### Specify Fields
+Many queries can be limited to specified fields using the `SetField()` on the query object.
+```go
+fq := bleve.NewMatchQuery("watermelon")
+fq.SetField("name") // only search the name field for the search term
+```
+
+### Configurable Parameters
+Many queries can be altered with setter methods. For example the fuzzy search query support changing the fuzzyness among others.
+```go
+fq := bleve.NewFuzzyQuery("wattermelon") //note typo
+fq.SetFuzziness(5)
+```
