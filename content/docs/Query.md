@@ -14,17 +14,17 @@ Queries supported by bleve. Note the example code on this page assumes you have 
 Here is a sample record that we can target with the search examples below:
 ```json
 {
-    "name": "Watermelon Wheat",
-    "abv": 5.5,
+    "name": "21A IPA",
+    "abv": 7.2,
     "ibu": 0.0,
     "srm": 0.0,
     "upc": 0,
     "type": "beer",
     "brewery_id": "21st_amendment_brewery_cafe",
     "updated": "2010-07-22 20:00:20",
-    "description": "The definition of summer in a pint glass. This unique, American-style wheat beer, is brewed with 400 lbs. of fresh pressed watermelon in each batch. Light turbid, straw color, with the taste and essence of fresh watermelon. Finishes dry and clean. Now Available in Cans!",
-    "style": "Belgian-Style Fruit Lambic",
-    "category": "Belgian and French Ale"
+    "description": "Deep golden color. Citrus and piney hop aromas. Assertive malt backbone supporting the overwhelming bitterness. Dry hopped in the fermenter with four types of hops giving an explosive hop aroma. Many refer to this IPA as Nectar of the Gods. Judge for yourself. Now Available in Cans!",
+    "style": "American-Style India Pale Ale",
+    "category": "North American Ale"
 }
 ```
 
@@ -64,12 +64,17 @@ q := bleve.NewPhraseQuery(phrase, "description")
 
 The match phrase query is like the phrase query, but the input text is analyzed and a phrase query is built with the terms resulting from the analysis.
 ```go
-q := bleve.NewMatchPhraseQuery("fresh pressed watermelon in each batch")
+q := bleve.NewMatchPhraseQuery("Citrus and piney hop aromas")
 ```
 
 ### Prefix
 
 The prefix query finds documents containing terms that start with the provided prefix.
+
+```go
+q := bleve.NewPrefixQuery("bud")
+q.SetField("brewery_id") //limit search to field
+```
 
 ### Fuzzy
 
@@ -109,6 +114,26 @@ The boolean query is useful combination of conjunction and disjunction queries. 
 * must not - result documents must not satisfy any of these queries
 
 The `minShould` value is configurable, defaults to 0.
+
+```go
+mq := bleve.NewMatchQuery("golden")
+mq.SetField("description")
+
+mq2 := bleve.NewMatchQuery("piney")
+mq2.SetField("description")
+
+mq3 := bleve.NewMatchQuery("citrus")
+mq3.SetField("description")
+
+mq4 := bleve.NewMatchQuery("brilliant")
+mq4.SetField("description")
+
+q := bleve.NewBooleanQuery()
+q.AddMust(mq)
+q.AddMust(mq2)
+q.AddShould(mq3)
+q.AddMustNot(mq4)
+```
 
 ### Numeric Range
 
@@ -155,13 +180,13 @@ Some helpful hints for using the search query apis.
 ### Specify Fields
 Many queries can be limited to specified fields using the `SetField()` on the query object.
 ```go
-fq := bleve.NewMatchQuery("watermelon")
+fq := bleve.NewMatchQuery("ipa")
 fq.SetField("name") // only search the name field for the search term
 ```
 
 ### Configurable Parameters
 Many queries can be altered with setter methods. For example the fuzzy search query support changing the fuzzyness among others.
 ```go
-fq := bleve.NewFuzzyQuery("wattermelon") //note typo
-fq.SetFuzziness(5)
+fq := bleve.NewFuzzyQuery("citus") //note typo
+fq.SetFuzziness(2)
 ```
