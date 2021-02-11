@@ -114,6 +114,13 @@ The `minShould` value is configurable, defaults to 0.
 
 The numeric range query finds documents containing a numeric value in the specified field within the specified range.  You can omit one endpoint, but not both.  The `inclusiveMin` and `inclusiveMax` properties control whether or not the end points are included or excluded.
 
+```go
+min := 5.0
+max := 10.0
+q := bleve.NewNumericRangeQuery(&min, &max)
+q.SetField("abv") // only search this field
+```
+
 ### Date Range
 
 The date range query finds documents containing a date value in the specified field within the specified range. You can omit one endpoint, but not both. The inclusiveStart and inclusiveEnd properties control whether or not the end points are included or excluded.
@@ -126,9 +133,17 @@ The query language query allows humans to describe complex queries using a simpl
 
 The match all query will match all documents in the index.
 
+```go
+q := bleve.NewMatchAllQuery()
+```
+
 ### Match None
 
 The match none query will not match any documents in the index.
+
+```go
+q := bleve.NewMatchNoneQuery()
+```
 
 ### Doc ID Query
 
