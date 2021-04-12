@@ -25,6 +25,16 @@ You can qualify the field for these searches by prefixing them with the name of 
 
 Example: `description:water` will perform a [Match Query]({{< relref "docs/Query.md#match" >}}) for the term `water`, in the `description` field.
 
+### Regular Expressions
+
+You can use regular expressions in addition to using terms by wrapping the expression in forward slashes (`/`).
+
+Example: `/light (beer|wine)/` will perform a regular expression against the terms in document.
+
+The regular expressions can also be used with field scoping.
+
+Example: `description:/wat.*/`
+
 ### Required, Optional, and Exclusion
 When your query string includes multiple items, by default these are placed into the SHOULD clause of a [Boolean Query]({{< relref "docs/Query.md#boolean" >}}).
 
