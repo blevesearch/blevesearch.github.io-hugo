@@ -11,10 +11,6 @@ weight = 8
 
 Follow @blevesearch on [twitter](https://twitter.com/blevesearch).
 
-### IRC
-
-Join the #bleve channel on [freenode](https://freenode.net/).
-
 ### Google Group
 
 Discuss use and development of bleve is in [this google group](https://groups.google.com/forum/#!forum/bleve).
