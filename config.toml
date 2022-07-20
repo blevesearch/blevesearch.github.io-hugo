@@ -2,7 +2,7 @@ baseurl = "https://www.blevesearch.com/"
 languageCode = "en-us"
 title = "Bleve"
 theme = "bleve"
-copyright= "© <img class=\"icon\" src=\"couchbase.png\"/> <a href=\"http://couchbase.com/\">Couchbase</a> 2015-2022"
+copyright= "© <img class=\"icon\" src=\"/img/couchbase.png\"/> <a href=\"http://couchbase.com/\">Couchbase</a> 2015-2022"
 
 [params]
   email = "info@blevesearch.com"
