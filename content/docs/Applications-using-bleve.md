@@ -10,6 +10,13 @@ parent = 'userguide'
 
 The following applications use bleve.  Add yours to the list!
 
+## cspapers.org
+
+cspapers.org is a fast and open search engine for Computer Science papers.
+
+* https://cspapers.org
+* https://github.com/swkim101/cspapers.org
+
 ## Caddy
 
 Caddy is an alternative web server that is easy to configure and use.  Caddy uses Bleve to automatically index your site and expose a search page and JSON endpoint.
