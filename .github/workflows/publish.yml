@@ -3,11 +3,13 @@ on:
     branches:
       - master
 name: Publish
+permissions:
+  contents: read
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Install Ancient Version of Hugo
@@ -19,11 +21,10 @@ jobs:
           hugo_0.14_linux_amd64/hugo_0.14_linux_amd64 -s .
           ls -l public
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
         with:
-          REPOSITORY_NAME: blevesearch/blevesearch.github.io
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: master # The branch the action should deploy to.
-          FOLDER: public # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
-
+          repository-name: blevesearch/blevesearch.github.io
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: master # The branch the action should deploy to.
+          folder: public # The folder the action should deploy.
+          clean: true # Automatically remove deleted files from the deploy branch
